@@ -4,35 +4,66 @@ import MainLayout from "./layouts/MainLayout"
 import Login from "./pages/Login"
 import Register from "./pages/Register"
 import Home from "./pages/Home"
-import { useSelector } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { action as Registeraction } from "./pages/Register"
-import { action as Loginaction} from "./pages/Login"
+import { action as Loginaction } from "./pages/Login"
+import { useEffect } from "react"
+import { onAuthStateChanged } from "firebase/auth"
+import { auth } from "./firebase/config"
+import { login, setAuthReady } from "./app/features/userSlice"
+import CreateTask from "./pages/CreateTask"
+import Task from "./pages/Task"
+
 export default function App() {
-  const {user}=useSelector((store)=>store.user)
+  const dispatch = useDispatch()
+  const { user, authReady } = useSelector((store) => store.user)
+
+  useEffect(() => {
+    const unsub = onAuthStateChanged(auth, (user) => {
+      if(user?.displayName){
+        dispatch(login(user))
+      }  // 🔑 auth tekshirish tugadi
+      dispatch(setAuthReady()) 
+    })
+    return () => unsub()
+  }, [dispatch])
+
   const routers = createBrowserRouter([
     {
       path: "/",
-      element: <ProtectedRoutes user={user}>
-        <MainLayout />
-      </ProtectedRoutes>,
+      element: (
+        <ProtectedRoutes user={user}>
+          <MainLayout />
+        </ProtectedRoutes>
+      ),
       children: [
+        { index: true, element: <Home /> },
         {
-          index: true,
-          element: <Home />
+          path:"/create",
+          element:<CreateTask/>
         },
-      ]
+        {
+          path:"/task/:id",
+          element:<Task/>
+        }
+      ],
     },
-
     {
       path: "/login",
-      element:user ? <Navigate to="/"/>:<Login/> ,
-      action:Loginaction,
+      element: user ? <Navigate to="/" /> : <Login />,
+      action: Loginaction,
     },
     {
       path: "/register",
-      element: user ? <Navigate to="/"/>: <Register />,
-      action:Registeraction,
-    }
+      element: user ? <Navigate to="/" /> : <Register />,
+      action: Registeraction,
+    },
   ])
-  return <RouterProvider router={routers} />
+
+  return (
+    <>
+      {!authReady && <p>Loading...</p>}   {/* 👈 Faqat tekshirish tugamaguncha kutadi */}
+      {authReady && <RouterProvider router={routers} />}
+    </>
+  )
 }
