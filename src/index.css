@@ -869,3 +869,426 @@ body {
   object-fit: cover;
 }
 
+  .task-container {
+    max-width: 900px;
+   
+    margin: 30px auto;
+    padding: 20px;
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    font-family: sans-serif;
+  }
+
+  .task-title {
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+    color: #4f46e5;
+    margin-bottom: 20px;
+  }
+
+  .comments-box {
+    background: #f9fafb;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    padding: 15px;
+    height: 300px;
+    overflow-y: auto;
+    margin-bottom: 15px;
+  }
+
+  .no-comments {
+    text-align: center;
+    color: #9ca3af;
+    font-style: italic;
+  }
+
+  .comments-list {
+  
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .comment {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    max-width: 70%;
+  }
+
+  .comment.me {
+    align-self: flex-end;
+    flex-direction: row-reverse;
+  }
+
+  .comment.other {
+    align-self: flex-start;
+  }
+
+  .avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 1px solid #ddd;
+  }
+
+  .comment-content {
+    padding: 10px 14px;
+    border-radius: 12px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  }
+
+  .comment.me .comment-content {
+    background: #4f46e5;
+    color: white;
+    border-bottom-right-radius: 0;
+  }
+
+  .comment.other .comment-content {
+    background: #e5e7eb;
+    color: #111827;
+    border-bottom-left-radius: 0;
+  }
+
+  .comment-content .name {
+    font-size: 13px;
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
+
+  .comment-content .text {
+    font-size: 15px;
+  }
+
+  .comment-form {
+    display: flex;
+    gap: 10px;
+    border-top: 1px solid #e5e7eb;
+    padding-top: 10px;
+  }
+
+  .comment-form input {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    font-size: 14px;
+    outline: none;
+  }
+
+  .comment-form input:focus {
+    border-color: #4f46e5;
+    box-shadow: 0 0 4px rgba(79,70,229,0.4);
+  }
+
+  .comment-form button {
+    padding: 10px 16px;
+    background: #4f46e5;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s;
+  }
+
+  .comment-form button:hover {
+    background: #4338ca;
+  }
+
+  .loading {
+    text-align: center;
+    color: #6b7280;
+  }
+
+  .error {
+    text-align: center;
+    color: red;
+    font-weight: bold;
+  }
+  /* container (ixtiyoriy) */
+  .exit-wrap {
+    display: flex;
+    justify-content: flex-end; /* o'ngga joylash */
+    padding: 8px;
+  }
+
+  /* link to'liq kattaligi va focus uchun */
+  .exit-link {
+    text-decoration: none;
+    display: inline-block;
+    border-radius: 12px;
+  }
+
+  /* tugma asosiy qismi */
+  .exit-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: linear-gradient(90deg, #f97316 0%, #ef4444 100%); /* iliq gradient - chiqish uchun urg'u */
+    color: #fff;
+    padding: 10px 16px;
+    font-weight: 700;
+    font-size: 15px;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    box-shadow: 0 6px 18px rgba(239, 68, 68, 0.18);
+    transition: transform 0.14s ease, box-shadow 0.14s ease, opacity 0.14s ease;
+    line-height: 1;
+    will-change: transform;
+  }
+
+  /* icon rangni tugmaga moslash */
+  .exit-icon {
+    color: inherit;
+    opacity: 0.95;
+  }
+
+  /* hover, focus, active */
+  .exit-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 26px rgba(239, 68, 68, 0.22);
+  }
+
+  .exit-btn:active {
+    transform: translateY(-1px) scale(0.995);
+    box-shadow: 0 6px 16px rgba(239, 68, 68, 0.18);
+  }
+
+  .exit-link:focus-visible .exit-btn,
+  .exit-btn:focus-visible {
+    outline: 3px solid rgba(239,68,68,0.18);
+    outline-offset: 4px;
+  }
+/* wqdefghjkl;';likuytrewq   */
+
+/* Container */
+.create-container {
+  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 90vh;
+ 
+}
+
+/* Card */
+.create-card {
+  background: #f5f7fa;
+  padding: 25px 30px;
+  border-radius: 12px;
+  box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.1);
+  width: 480px;
+}
+
+/* Title */
+.form-title {
+  margin-bottom: 20px;
+  text-align: center;
+  color: #242323;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+/* Form */
+.task-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+/* Groups */
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+/* Inputs */
+input,
+textarea,
+.select__control {
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 1px solid #161515;
+  outline: none;
+  font-size: 14px;
+}
+
+input:focus,
+textarea:focus,
+.select__control--is-focused {
+  border-color: #007bff;
+  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.15);
+}
+
+/* Textarea */
+textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+
+/* Button */
+.create-btn {
+  background: #007bff;
+  color: #090909;
+  font-size: 15px;
+  font-weight: 500;
+  padding: 12px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.create-btn:hover {
+  background: #0056b3;
+}
+body {
+  margin: 0;
+  font-family: sans-serif;
+
+  /* Orqa fon rasmi */
+  background-image: url("https://images.pexels.com/photos/1032650/pexels-photo-1032650.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  /* Tekst ko‘rinishi uchun qoramtir qatlam */
+  background-color: rgba(0, 0, 0, 0.5);
+  background-blend-mode: overlay;
+
+  min-height: 100vh;
+}
+
+/* Responsive Design */
+@media (max-width: 480px) {
+  .task-container {
+    padding: 0.5rem;
+  }
+  
+  .task-card {
+    padding: 1.5rem;
+  }
+  
+  .task-title {
+    font-size: 1.25rem;
+  }
+  
+  .task-subtitle {
+    font-size: 0.8rem;
+  }
+} 
+
+
+@media (max-width: 480px) {
+  .exit-wrap {
+    justify-content: center; 
+    padding: 12px 8px;
+  }
+
+  .exit-btn {
+    padding: 10px 14px;
+    font-size: 14px;
+    border-radius: 10px;
+  }
+
+  .exit-text { display: inline-block; }
+}
+
+/* agar faqat ikonka ko'rsatilishini xohlasang (masalan mobilda) */
+@media (max-width: 360px) {
+  .exit-text { display: none; } /* faqat ikon qoladi */
+  .exit-btn { padding: 10px; width: 44px; justify-content: center; }
+}
+
+
+/* Animation */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(15px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+  .create-card {
+    padding: 20px;
+    border-radius: 12px;
+  }
+
+  .form-title {
+    font-size: 18px;
+  }
+
+  .create-btn {
+    font-size: 15px;
+    padding: 12px;
+  }
+}
+/* ==================== Responsive ==================== */
+
+/* Planshet (max-width: 1024px) */
+@media (max-width: 1024px) {
+  .dashboard {
+    grid-template-columns: 1fr; /* yonma-yon emas, bitta ustun */
+  }
+
+  .create-card {
+    max-width: 90%; /* form markazda va kengayib chiqadi */
+  }
+}
+
+/* Kichik ekran (max-width: 768px) */
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column; /* ustun qilib qo'yadi */
+    gap: 10px;
+    text-align: center;
+  }
+
+  .exit-btn {
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+  }
+
+  .create-card,
+  .auth-card {
+    padding: 1.2rem;
+    margin: 0 10px;
+  }
+
+  .task-form input,
+  .task-form textarea,
+  .basic-multi-select {
+    font-size: 0.9rem;
+    padding: 0.6rem;
+  }
+}
+
+/* Telefon (max-width: 480px) */
+@media (max-width: 480px) {
+  .form-title {
+    font-size: 1.2rem;
+  }
+
+  .create-btn,
+  .auth-card button {
+    font-size: 0.9rem;
+    padding: 0.6rem;
+  }
+
+  .comment .text {
+    max-width: 80%; /* ekranga moslashadi */
+    font-size: 0.85rem;
+  }
+
+  .comment img.avatar {
+    width: 32px;
+    height: 32px;
+  }
+}
+/* // */

@@ -1,12 +1,15 @@
-import React from 'react'
 
-export default function ForimTextArea({label,name,type}) {
+
+export default function ForimTextArea({ label, name, placeholder }) {
   return (
-    <div>
-        <label >{label}</label>
-        <br />
-        <textarea type={type}name={name} />
-        <br />
+    <div className="form-group">
+      <label className="form-label">{label}</label>
+      <textarea
+        name={name}
+        placeholder={placeholder}
+        className="form-textarea"
+      />
     </div>
   )
 }
+

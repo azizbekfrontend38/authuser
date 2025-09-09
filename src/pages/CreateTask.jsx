@@ -51,7 +51,7 @@ export default function CreateTask() {
   return (
     <div className="create-container">
       <div className="create-card">
-        <h2 className="form-title">➕ Create New Task</h2>
+        <h2 className="form-title"> Create New Task</h2>
         <form onSubmit={handelSubmit} method="post" className="task-form">
           {/* Title */}
           <FormInput label="Title" name="title" type="text" />

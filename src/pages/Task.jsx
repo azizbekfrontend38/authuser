@@ -1,9 +1,10 @@
 import React from 'react'
-import { useParams } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import useDocument from '../hooks/useDocument'
 import { doc, updateDoc } from 'firebase/firestore'
 import { db } from '../firebase/config'
 import { useSelector } from 'react-redux'
+
 
 export default function Task() {
   const { id } = useParams()
@@ -32,35 +33,37 @@ export default function Task() {
   }
 
   if (error) {
-    return <p>Error: {error}</p>
+    return <p className="error">Error: {error}</p>
   }
 
   if (!data) {
-    return <p>Loading...</p>
+    return <p className="loading">Loading...</p>
   }
 
   return (
     <div className="task-container">
-      <h1>Task - {data.title}</h1>
+      <h1 className="task-title">Task - {data.title}</h1>
 
       <div className="comments-box">
         {data.comments?.length === 0 ? (
-          <p className="no-comments">No comments</p>
+          <p className="no-comments">No comments yet...</p>
         ) : (
-          <div>
+          <div className="comments-list">
             {data.comments.map((comment) => (
               <div
                 key={comment.id}
-                className={`comment ${
-                  comment.uid === user.uid ? 'me' : 'other'
-                }`}
+                className={`comment ${comment.uid === user.uid ? 'me' : 'other'
+                  }`}
               >
                 <img
                   src={comment.photoURL}
                   alt={comment.displayName}
                   className="avatar"
                 />
-                <span className="text">{comment.text}</span>
+                <div className="comment-content">
+                  <p className="name">{comment.displayName}</p>
+                  <span className="text">{comment.text}</span>
+                </div>
               </div>
             ))}
           </div>
@@ -68,9 +71,17 @@ export default function Task() {
       </div>
 
       <form onSubmit={handelSubmit} className="comment-form">
-        <input type="text" placeholder="add comment" name="comment" />
-        <button type="submit">Add</button>
+        <input type="text" placeholder="Write a comment..." name="comment" />
+        <button type="submit">Send</button>
       </form>
+      <div className="exit-wrap">
+        <Link to="/" className="exit-link" aria-label="Chiqish">
+          <button type="button" className="exit-btn">
+
+            <span className="exit-text">Chiqish</span>
+          </button>
+        </Link>
+      </div>
     </div>
   )
 }
