@@ -62,7 +62,7 @@ export default function App() {
 
   return (
     <>
-      {!authReady && <p>Loading...</p>}   {/* 👈 Faqat tekshirish tugamaguncha kutadi */}
+      {!authReady && <p>Loading...</p>}  
       {authReady && <RouterProvider router={routers} />}
     </>
   )

@@ -1,24 +1,34 @@
-import { useEffect, useState } from "react"
-import { collection, onSnapshot } from "firebase/firestore";
+import { useEffect, useRef, useState } from "react";
+import { collection, onSnapshot, query, orderBy } from "firebase/firestore";
 import { db } from "../firebase/config";
 
-export const useColoction = (collectionName) => {
-    const [data, setData] = useState(null)
-    useEffect(() => {
-        const unsubscribe = onSnapshot(collection(db,collectionName ), (snapshot) => {
-            const data =[]
-            snapshot.forEach((item)=>{
-                data.push({
-                    uid:item.id,
-                    ...item.data(),
-                })
-            })
-            setData(data)
+export const useColoction = (collectionName, _query) => {
+  const [data, setData] = useState(null);
+  const queryData = useRef(_query);
+
+  useEffect(() => {
+    let q = collection(db, collectionName);
+
+    // Agar _query kelgan bo‘lsa, unga qarab query yasaymiz
+    if (queryData.current) {
+      q = query(q, orderBy("timestamp", queryData.current));
+    } else if (collectionName !== "users") {
+      q = query(q, orderBy("timestamp", "asc"));
+    }
+
+    const unsubscribe = onSnapshot(q, (snapshot) => {
+      const dataArr = [];
+      snapshot.forEach((item) => {
+        dataArr.push({
+          uid: item.id,
+          ...item.data(),
         });
+      });
+      setData(dataArr);
+    });
 
-      
-      return()=>  unsubscribe();
+    return () => unsubscribe();
+  }, [collectionName]);
 
-    }, [collectionName])
-    return { data }
-}
+  return { data };
+};

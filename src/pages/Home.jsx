@@ -7,7 +7,7 @@ export default function Home() {
   const { _logout, error, isPeding } = useLogaut();
   const { user } = useSelector((store) => store.user);
   const { data } = useColoction("users");
-  const { data: tasks } = useColoction("tasks");
+  const { data: tasks } = useColoction("tasks",'desc');
 
   return (
     <div className="dashboard">

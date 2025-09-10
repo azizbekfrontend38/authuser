@@ -3,7 +3,7 @@ import ForimTextArea from "../components/ForimTextArea";
 import { useColoction } from "../hooks/useColoction";
 import Select from "react-select";
 import { useEffect, useState } from "react";
-import { addDoc, collection } from "firebase/firestore";
+import { addDoc, collection,serverTimestamp } from "firebase/firestore";
 import { db } from "../firebase/config";
 import { useNavigate } from "react-router-dom";
 
@@ -38,6 +38,8 @@ export default function CreateTask() {
       dueTo,
       attachedUsers,
       comments: [],
+        timestamp: serverTimestamp(),
+
     };
 
     await addDoc(collection(db, "tasks"), {
