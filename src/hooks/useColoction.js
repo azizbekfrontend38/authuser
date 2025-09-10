@@ -11,7 +11,7 @@ export const useColoction = (collectionName, _query) => {
 
     // Agar _query kelgan bo‘lsa, unga qarab query yasaymiz
     if (queryData.current) {
-      q = query(q, orderBy("timestamp", asc));
+      q = query(q, orderBy("timestamp", queryData.current));
     } else if (collectionName !== "users") {
       q = query(q, orderBy("timestamp", "asc"));
     }
